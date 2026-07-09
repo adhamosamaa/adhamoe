@@ -22,24 +22,29 @@ const dmSerifDisplay = DM_Serif_Display({
 export const metadata: Metadata = {
   title: 'Adham Osama',
   description:
-    'Adham Osama is a graphic designer and AI art director based in Egypt, specializing in brand identity, social media design, editorial design, and Midjourney-driven AI art direction.',
-  metadataBase: new URL('https://adhamoe.com'),
+    'Adham Osama is a Graphic Designer based in Egypt, specializing in Social media design.',
+  metadataBase: new URL('https://adhamoe.vercel.app'),
   alternates: {
-    canonical: 'https://adhamoe.com/',
+    canonical: '/',
   },
   openGraph: {
     type: 'website',
     title: 'Adham Osama — Graphic Designer',
     description:
-      'Brand identity, social media design, editorial design, and AI art direction — strategy-driven design with automation and AI-assisted workflows.',
-    images: ['/images/og-cover.jpg'],
+      'Adham Osama is a Graphic Designer based in Egypt, specializing in Social media design.',
+    images: ['/images/adham-pro.png'],
   },
+  keywords: ['adhamoe', 'Adham Osama Elghobary', 'Adham Osama', 'Graphic Designer', 'AI Art Director', 'Egypt', 'Portfolio'],
+  authors: [{ name: 'Adham Osama Elghobary' }],
   twitter: {
     card: 'summary_large_image',
   },
   icons: {
     icon:
       "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%2304D9D9' d='M12 0C12 6.62742 17.3726 12 24 12C17.3726 12 12 17.3726 12 24C12 17.3726 6.62742 12 0 12C6.62742 12 12 6.62742 12 0Z'/%3E%3C/svg%3E",
+  },
+  verification: {
+    google: 'eHgBG4jljzFs9UsI87PZGr06_07rrExX01nltLSNmJY',
   },
 };
 
