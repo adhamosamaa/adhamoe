@@ -202,10 +202,10 @@ export default async function ProjectPage({ params }: PageProps) {
               <div>
                 <span className="detail-label block mb-3">Next Project</span>
                 <Link
-                  href={`/works/${nextProject.id}`}
+                  href={`/works/${nextProject!.id}`}
                   className="text-[clamp(28px,4vw,48px)] font-bold tracking-[-0.03em] leading-tight text-white no-underline transition-colors hover:text-accent"
                 >
-                  {nextProject.title}
+                  {nextProject!.title}
                 </Link>
               </div>
               <Link href="/works" className="sec-cta">
