@@ -50,8 +50,8 @@ export default async function ProjectPage({ params }: PageProps) {
   const projectIndex = projects.findIndex((p) => p.id === slug);
   if (projectIndex === -1) notFound();
 
-  const project = projects[projectIndex];
-  const nextProject = projects[(projectIndex + 1) % projects.length];
+  const project = projects[projectIndex]!;
+  const nextProject = projects[(projectIndex + 1) % projects.length]!;
   const Glyph = iconGlyphs[project.icon];
 
   const hasCover = project.cover !== '';
