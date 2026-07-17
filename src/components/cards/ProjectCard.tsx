@@ -1,3 +1,5 @@
+import Link from 'next/link';
+import Image from 'next/image';
 import type { Project, ProjectIcon } from '@/types';
 
 const iconGlyphs: Record<ProjectIcon, () => React.JSX.Element> = {
@@ -20,30 +22,35 @@ interface ProjectCardProps {
 
 export function ProjectCard({ project }: ProjectCardProps) {
   const Glyph = iconGlyphs[project.icon];
+  const hasCover = project.cover !== '';
 
   return (
-    <a href={project.href} className="proj-card flex flex-col text-white no-underline">
-      <div className="proj-card-thumb w-full aspect-[16/10] rounded-2xl overflow-hidden mb-6 border border-white/5 transition-colors">
-        <div className={`proj-${project.gradient} proj-img w-full h-full flex items-center justify-center`}>
-          <svg width="80" height="80" viewBox="0 0 60 60" fill="none" opacity=".3" aria-hidden="true">
-            <Glyph />
-          </svg>
-        </div>
-      </div>
-      <div>
-        <div className="flex justify-between items-center mb-4">
-          <div className="flex flex-wrap gap-2">
-            {project.tags.map((tag) => (
-              <span key={tag} className="proj-tag">
-                {tag}
-              </span>
-            ))}
+    <Link href={`/works/${project.id}`} className="proj-card flex flex-col text-white no-underline">
+      <div className="proj-card-thumb w-full aspect-[16/10] rounded-2xl overflow-hidden mb-5 border border-white/5 transition-colors">
+        {hasCover ? (
+          <Image
+            src={project.cover}
+            alt={project.title}
+            width={640}
+            height={400}
+            className="proj-img w-full h-full object-cover"
+          />
+        ) : (
+          <div className={`proj-${project.gradient} proj-img w-full h-full flex items-center justify-center`}>
+            <svg width="60" height="60" viewBox="0 0 60 60" fill="none" opacity=".2" aria-hidden="true">
+              <Glyph />
+            </svg>
           </div>
-          <span className="text-[13px] text-gray-dim font-medium">{project.year}</span>
-        </div>
-        <h3 className="proj-title text-3xl font-bold tracking-tight mb-3 transition-colors">{project.title}</h3>
-        <p className="text-[15px] text-gray leading-relaxed font-light max-w-[90%]">{project.description}</p>
+        )}
       </div>
-    </a>
+      <div className="flex flex-col gap-2">
+        <div className="flex items-center justify-between">
+          <span className="text-[11px] uppercase tracking-[.15em] text-accent font-medium">{project.category}</span>
+          <span className="text-[12px] text-gray-dim font-light">{project.year}</span>
+        </div>
+        <h3 className="proj-title text-[22px] font-bold tracking-tight leading-snug transition-colors">{project.title}</h3>
+        <p className="text-[13.5px] text-gray leading-relaxed font-light">{project.description}</p>
+      </div>
+    </Link>
   );
 }

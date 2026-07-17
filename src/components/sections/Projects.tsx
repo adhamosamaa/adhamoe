@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { SectionLabel } from '@/components/ui/SectionLabel';
 import { AccentText } from '@/components/ui/AccentText';
 import { Reveal } from '@/components/ui/Reveal';
@@ -27,10 +28,19 @@ export function Projects() {
           ))}
         </div>
 
-        <Reveal delay={0} className="flex justify-center mt-16">
-          <a href="#" className="btn-outline">
-            See More Projects ↗
-          </a>
+        <Reveal delay={0} className="mt-14">
+          <Link href="/works" className="sec-cta">
+            See More Projects
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path
+                d="M3 8h10M9 4l4 4-4 4"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </Link>
         </Reveal>
       </div>
     </section>

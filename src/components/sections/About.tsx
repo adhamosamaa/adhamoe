@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { SectionLabel } from '@/components/ui/SectionLabel';
 import { AccentText } from '@/components/ui/AccentText';
 import { Reveal } from '@/components/ui/Reveal';
@@ -23,12 +24,18 @@ export function About() {
                 className="text-base leading-[1.85] text-gray font-light max-w-[360px] mb-5"
               />
             ))}
-            <a
-              href="#contact"
-              className="inline-flex items-center gap-2 text-sm text-gray no-underline mt-4 transition-colors hover:text-white"
-            >
-              More About Me ↗
-            </a>
+            <Link href="/about" className="sec-cta mt-6">
+              More About Me
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path
+                  d="M3 8h10M9 4l4 4-4 4"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </Link>
           </Reveal>
 
           <Reveal delay={80} className="xl:pl-20 xl:border-l xl:border-white/[.06]">

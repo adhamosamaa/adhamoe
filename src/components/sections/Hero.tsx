@@ -18,12 +18,14 @@ export function Hero() {
 
           <h1 className="hero-in-h1 text-[clamp(56px,7vw,110px)] font-bold tracking-[-0.03em] leading-none">
             {siteSettings.heroHeadline.map((line) => (
-              <span key={line}>
+              <span key={line} className="whitespace-nowrap">
                 {line}
                 <br />
               </span>
             ))}
-            <AccentText>{siteSettings.heroHighlight}</AccentText>
+            <span className="whitespace-nowrap">
+              <AccentText>{siteSettings.heroHighlight}</AccentText>
+            </span>
           </h1>
 
           <p className="hero-in-desc text-base leading-[1.7] text-gray max-w-[440px] mt-8">
