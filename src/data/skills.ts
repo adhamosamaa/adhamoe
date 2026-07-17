@@ -1,13 +1,8 @@
 import type { SkillRowData } from '@/types';
 
 export const skills: SkillRowData[] = [
-  { id: 'ui-ux', number: '01', name: 'UI / UX Design', tags: ['Figma', 'Wireframing', 'Prototyping'] },
-  { id: 'social-brand', number: '02', name: 'Social Media & Brand', tags: ['Campaigns', 'Identity', 'Typography'] },
-  {
-    id: 'ai-automation',
-    number: '03',
-    name: 'AI & Automation',
-    tags: ['Midjourney', 'Prompt Engineering', 'Adobe Scripts (JS)'],
-  },
-  { id: 'web-dev', number: '04', name: 'Web Development', tags: ['React', 'Next.js', 'Tailwind'] },
+  { id: 'design-skills', number: '01', name: 'Design Skills', tags: ['Social Media Design', 'Visual Identity', 'Typography', 'Layout Design'] },
+  { id: 'adobe-suite', number: '02', name: 'Adobe Creative Suite', tags: ['Photoshop', 'Illustrator', 'InDesign', 'After Effects', 'Premiere Pro'] },
+  { id: 'ai-tools', number: '03', name: 'AI Tools', tags: ['ChatGPT', 'Adobe Firefly', 'Claude', 'Gemini'] },
+  { id: 'soft-skills', number: '04', name: 'Soft Skills', tags: ['Communication', 'Teamwork', 'Problem Solving'] },
 ];

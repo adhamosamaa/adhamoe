@@ -6,17 +6,17 @@ export const siteSettings: SiteSettings = {
   heroHeadline: ['Visual stories', 'crafted with'],
   heroHighlight: 'intention.',
   heroDescription:
-    'I help brands communicate clearly through strategy-driven design, automation, and AI-assisted workflows.',
+    'Graphic Designer with 2+ years of experience specializing in social media design and creative content production.',
   aboutParagraphs: [
     {
       id: 'intro',
-      text: "I'm Adham, a graphic designer based in Egypt. I specialize in Social Media Design, bridging the gap between aesthetics",
+      text: "I'm Adham, a Graphic Designer with 2+ years of experience specializing in social media design, producing high-volume creative content.",
       boldPhrase: 'Adham',
     },
     {
       id: 'philosophy',
-      text: 'I believe great design is not just about how it looks, but how it communicates, connects, and solves real problems—often leveraging automation and AI to optimize the creative process.',
-      boldPhrase: 'communicates, connects, and solves',
+      text: "Focused on building visually consistent, high-converting social media creatives tailored to each brand's identity, leveraging both traditional tools and generative AI.",
+      boldPhrase: 'visually consistent, high-converting social media creatives',
     },
   ],
   contactHeadline: 'Got a project',

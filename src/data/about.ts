@@ -3,55 +3,71 @@ import type { BioParagraph, ExperienceEntry, SoftwareItem } from '@/types';
 export const aboutHeroParagraphs: BioParagraph[] = [
   {
     id: 'intro-extended',
-    text: "I'm Adham Osama, a graphic designer and AI art director based in Egypt. I specialize in transforming brand visions into strategic, visually compelling designs that communicate with clarity and purpose.",
+    text: "I'm Adham Osama, a Graphic Designer with 2+ years of experience specializing in social media design, producing high-volume creative content for brands across diverse industries.",
     boldPhrase: 'Adham Osama',
   },
   {
     id: 'approach',
-    text: 'My work sits at the intersection of traditional design craft and modern AI-assisted workflows. I believe in design that communicates, connects, and solves — not just decorates.',
-    boldPhrase: 'communicates, connects, and solves',
+    text: 'Skilled in the Adobe Creative Suite, with hands-on experience using generative AI tools for art direction and creative production.',
+    boldPhrase: 'generative AI tools',
   },
   {
     id: 'philosophy',
-    text: 'Every project starts with understanding the why. From social media campaigns to brand identities, I approach each brief with strategic thinking and intentional creativity, leveraging automation and AI to optimize the process without sacrificing quality.',
+    text: 'I am focused on building visually consistent, high-converting social media creatives tailored to each brand\'s identity.',
   },
 ];
 
 export const experience: ExperienceEntry[] = [
   {
-    id: 'freelance',
-    role: 'Graphic Designer & AI Art Director',
-    company: 'Freelance',
-    period: '2024 — Present',
+    id: 'bareq',
+    role: 'Graphic Designer (Part-time)',
+    company: 'bareq studio',
+    period: '03/2026 — Present',
     description:
-      'Leading brand identity, social media design, and AI art direction projects for clients across the MENA region.',
+      'Designed carousel and social media creative sets for multiple brand accounts. Partnered with the branding team to translate campaign briefs into on-brand marketing assets.',
   },
   {
-    id: 'social-media',
-    role: 'Social Media Designer',
-    company: 'Various Agencies',
-    period: '2022 — 2024',
+    id: 'tar-group',
+    role: 'Graphic Designer',
+    company: 'TAR Group',
+    period: '10/2025 — 07/2026',
     description:
-      'Designed social media campaigns, brand content, and visual assets for food, tech, and lifestyle brands.',
+      'Delivered 250+ social media creatives per month across clients in multiple industries. Worked with cross-functional teams to keep campaign output on-brand and on-deadline.',
   },
   {
-    id: 'junior',
-    role: 'Junior Graphic Designer',
-    company: 'Creative Studio',
-    period: '2021 — 2022',
+    id: 'tar-group-intern',
+    role: 'Graphic Designer (Internship)',
+    company: 'TAR Group',
+    period: '07/2025 — 09/2025',
     description:
-      'Collaborated on brand identity projects, print design, and digital marketing materials.',
+      'Built foundational design skills by contributing to live marketing campaigns under agency deadlines. Practiced photo manipulation and creative problem-solving.',
+  },
+  {
+    id: 'hosoun',
+    role: 'Graphic Designer',
+    company: 'hosoun educational platform',
+    period: '02/2025 — 03/2025',
+    description:
+      'Designed website banners, digital ads, and social creatives for the Saudi education market. Adapted visual direction for a new regional audience.',
+  },
+  {
+    id: 'center-focus',
+    role: 'Graphic Designer',
+    company: 'Center Focus',
+    period: '10/2024 — 06/2025',
+    description:
+      'Designed social media creatives and marketing materials. Rebuilt the center\'s visual identity from inconsistent assets into a unified brand presence.',
   },
 ];
 
 export const softwareList: SoftwareItem[] = [
-  { id: 'illustrator', name: 'Adobe Illustrator', category: 'Design' },
   { id: 'photoshop', name: 'Adobe Photoshop', category: 'Design' },
+  { id: 'illustrator', name: 'Adobe Illustrator', category: 'Design' },
   { id: 'indesign', name: 'Adobe InDesign', category: 'Design' },
-  { id: 'after-effects', name: 'After Effects', category: 'Motion' },
-  { id: 'premiere', name: 'Premiere Pro', category: 'Motion' },
-  { id: 'figma', name: 'Figma', category: 'Design' },
-  { id: 'midjourney', name: 'Midjourney', category: 'AI' },
-  { id: 'vscode', name: 'VS Code', category: 'Development' },
-  { id: 'nextjs', name: 'Next.js', category: 'Development' },
+  { id: 'after-effects', name: 'After Effects', category: 'Design' },
+  { id: 'premiere', name: 'Premiere Pro', category: 'Design' },
+  { id: 'chatgpt', name: 'ChatGPT', category: 'AI Tools' },
+  { id: 'adobe-firefly', name: 'Adobe Firefly', category: 'AI Tools' },
+  { id: 'claude', name: 'Claude', category: 'AI Tools' },
+  { id: 'gemini', name: 'Gemini', category: 'AI Tools' },
 ];
