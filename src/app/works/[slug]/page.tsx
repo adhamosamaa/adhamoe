@@ -51,7 +51,11 @@ export default async function ProjectPage({ params }: PageProps) {
   if (projectIndex === -1) notFound();
 
   const project = projects[projectIndex];
+  if (!project) notFound();
+  
   const nextProject = projects[(projectIndex + 1) % projects.length];
+  if (!nextProject) notFound();
+  
   const Glyph = iconGlyphs[project.icon];
 
   const hasCover = project.cover !== '';
