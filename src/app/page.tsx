@@ -11,13 +11,6 @@ import { Contact } from '@/components/sections/Contact';
 export default function Home() {
   return (
     <>
-      <a
-        href="#main"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[300] focus:bg-white focus:text-bg focus:px-4 focus:py-2 focus:rounded-full focus:text-sm focus:font-semibold"
-      >
-        Skip to content
-      </a>
-
       <div
         className="glow fixed -top-[20vh] left-1/2 -translate-x-1/2 w-[min(900px,120vw)] h-[70vh] pointer-events-none z-0 blur-[40px]"
         style={{

@@ -39,7 +39,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!project) return { title: 'Project Not Found' };
 
   return {
-    title: `${project.title} — Adham Osama`,
+    title: `${project.title} - Adham Osama`,
     description: project.description,
   };
 }
@@ -51,16 +51,15 @@ export default async function ProjectPage({ params }: PageProps) {
   if (projectIndex === -1) notFound();
 
   const project = projects[projectIndex];
+  if (!project) notFound();
 
-  if (!project) {
-    notFound();
-  }
-
-  const nextProject = projects[(projectIndex + 1) % projects.length];
+  const otherProjects = projects.filter((p) => p.id !== project.id);
   const Glyph = iconGlyphs[project.icon];
 
   const hasCover = project.cover !== '';
-  const hasGallery = project.gallery.length > 0;
+  const extraGalleryImages = project.gallery.filter((img) => img !== project.cover);
+  const galleryImages =
+    extraGalleryImages.length > 0 ? extraGalleryImages : hasCover ? [project.cover] : project.gallery;
 
   return (
     <>
@@ -74,37 +73,57 @@ export default async function ProjectPage({ params }: PageProps) {
 
       <Navbar />
 
-      <main id="main" className="pt-40 pb-24 md:pb-32">
+      <main id="main" className="pt-36 pb-28 md:pb-36">
         <div className="max-w-(--max-width-page) mx-auto px-6 md:px-13">
-          {/* ── Hero ──────────────────────────── */}
-          <Reveal delay={0} className="mb-20">
+          {/* ── Minimal Header & Metadata ── */}
+          <Reveal delay={0} className="mb-12">
             <SectionLabel className="mb-4">{project.category}</SectionLabel>
-            <h1 className="text-[clamp(42px,6vw,80px)] font-bold tracking-[-0.03em] leading-[.95] mb-6">
+            <h1 className="text-[clamp(40px,5.5vw,76px)] font-bold tracking-[-0.03em] leading-[0.98] mb-8">
               {project.title}
             </h1>
-            <div className="flex flex-wrap items-center gap-3 mb-10">
-              {project.tags.map((tag) => (
-                <span key={tag} className="proj-tag">
-                  {tag}
-                </span>
-              ))}
-              <span className="text-[13px] text-gray-dim font-light ml-2">{project.year}</span>
-            </div>
 
+            {/* Minimal Inline Metadata Bar */}
+            <div className="flex flex-wrap items-center justify-between gap-6 py-4 border-y border-white/10 text-xs md:text-sm text-gray-400 font-mono">
+              <div className="flex items-center gap-6">
+                <div>
+                  <span className="text-white/30 block text-[10px] uppercase tracking-wider mb-0.5">Year</span>
+                  <span className="text-white">{project.year}</span>
+                </div>
+                {project.services && project.services.length > 0 && (
+                  <div>
+                    <span className="text-white/30 block text-[10px] uppercase tracking-wider mb-0.5">Role</span>
+                    <span className="text-white">{project.services.slice(0, 2).join(' / ')}</span>
+                  </div>
+                )}
+              </div>
+              {project.tools && project.tools.length > 0 && (
+                <div className="flex items-center gap-1.5 flex-wrap">
+                  {project.tools.map((tool) => (
+                    <span key={tool} className="text-[10px] text-white/50 bg-white/[0.04] border border-white/[0.08] px-2.5 py-1 rounded-full font-sans">
+                      {tool}
+                    </span>
+                  ))}
+                </div>
+              )}
+            </div>
+          </Reveal>
+
+          {/* ── Hero Cover Image (As it was, with rounded corners) ── */}
+          <Reveal delay={0} className="mb-16 md:mb-24">
             {hasCover ? (
-              <div className="w-full aspect-[16/8] rounded-2xl overflow-hidden border border-white/5">
+              <div className="w-full aspect-[16/9] rounded-2xl md:rounded-3xl overflow-hidden border border-white/10 bg-white/[0.02]">
                 <Image
                   src={project.cover}
                   alt={project.title}
-                  width={1320}
-                  height={660}
+                  width={1920}
+                  height={1080}
                   priority
                   className="w-full h-full object-cover"
                 />
               </div>
             ) : (
               <div
-                className={`proj-${project.gradient} w-full aspect-[16/8] rounded-2xl flex items-center justify-center overflow-hidden border border-white/5`}
+                className={`proj-${project.gradient} w-full aspect-[16/9] rounded-2xl md:rounded-3xl flex items-center justify-center overflow-hidden border border-white/10`}
               >
                 <svg width="120" height="120" viewBox="0 0 60 60" fill="none" opacity=".15" aria-hidden="true">
                   <Glyph />
@@ -113,100 +132,44 @@ export default async function ProjectPage({ params }: PageProps) {
             )}
           </Reveal>
 
-          {/* ── Overview ──────────────────────── */}
-          <Reveal delay={0} className="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-8 mb-20">
-            <span className="detail-label pt-1">Overview</span>
-            <p className="text-base leading-[1.85] text-gray font-light max-w-[640px]">{project.overview}</p>
-          </Reveal>
+          {/* ── Minimal Overview ── */}
+          {project.overview && (
+            <Reveal delay={0} className="max-w-3xl mb-20 md:mb-28">
+              <h2 className="text-xs font-mono uppercase tracking-[0.2em] text-accent mb-3">About The Project</h2>
+              <p className="text-lg md:text-xl leading-relaxed text-gray-300 font-light">
+                {project.overview}
+              </p>
+            </Reveal>
+          )}
 
-          {/* ── Services ─────────────────────── */}
-          <Reveal delay={0} className="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-8 mb-20">
-            <span className="detail-label pt-1">Services</span>
-            <div className="flex flex-wrap gap-2">
-              {project.services.map((service) => (
-                <span key={service} className="proj-tag">
-                  {service}
-                </span>
-              ))}
-            </div>
-          </Reveal>
-
-          {/* ── Tools ────────────────────────── */}
-          <Reveal delay={0} className="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-8 mb-20">
-            <span className="detail-label pt-1">Tools</span>
-            <div className="flex flex-wrap gap-2">
-              {project.tools.map((tool) => (
-                <span key={tool} className="proj-tag">
-                  {tool}
-                </span>
-              ))}
-            </div>
-          </Reveal>
-
-          {/* ── Gallery ──────────────────────── */}
-          <Reveal delay={0} className="mb-20">
-            <SectionLabel className="mb-8">Gallery</SectionLabel>
-            {hasGallery ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {project.gallery.map((img, i) => (
-                  <div key={i} className="gallery-img aspect-[16/10]">
+          {/* ── Full-Width Stacked Gallery Showcase (Uncropped, original dimensions, sharp edges) ── */}
+          {galleryImages.length > 0 && (
+            <Reveal delay={0} className="mb-24 md:mb-32">
+              <div className="flex flex-col gap-10 md:gap-16">
+                {galleryImages.map((img, i) => (
+                  <div
+                    key={i}
+                    className="w-full border border-white/10 bg-white/[0.02]"
+                  >
                     <Image
                       src={img}
-                      alt={`${project.title} — gallery image ${i + 1}`}
-                      width={660}
-                      height={412}
-                      className="w-full h-full object-cover"
+                      alt={`${project.title} - Showcase ${i + 1}`}
+                      width={1920}
+                      height={1080}
+                      className="w-full h-auto block"
                     />
                   </div>
                 ))}
               </div>
-            ) : hasCover ? (
-              <div className="gallery-img aspect-[16/8] overflow-hidden">
-                <Image
-                  src={project.cover}
-                  alt={`${project.title} — cover`}
-                  width={1320}
-                  height={660}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            ) : (
-              <div
-                className={`gallery-img proj-${project.gradient} w-full aspect-[16/8] flex items-center justify-center`}
-              >
-                <svg width="100" height="100" viewBox="0 0 60 60" fill="none" opacity=".15" aria-hidden="true">
-                  <Glyph />
-                </svg>
-              </div>
-            )}
-          </Reveal>
+            </Reveal>
+          )}
 
-          {/* ── Challenge ─────────────────────── */}
-          <Reveal delay={0} className="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-8 mb-20">
-            <span className="detail-label pt-1">Challenge</span>
-            <p className="text-base leading-[1.85] text-gray font-light max-w-[640px]">{project.challenge}</p>
-          </Reveal>
-
-          {/* ── Solution ─────────────────────── */}
-          <Reveal delay={0} className="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-8 mb-20">
-            <span className="detail-label pt-1">Solution</span>
-            <p className="text-base leading-[1.85] text-gray font-light max-w-[640px]">{project.solution}</p>
-          </Reveal>
-
-          {/* ── Next Project + Back to Works ──── */}
-          <div className="border-t border-white/5 pt-16">
-            <Reveal
-              delay={0}
-              className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8"
-            >
+          {/* ── More Projects Horizontal Scroll Showcase ── */}
+          <div className="border-t border-white/10 pt-20">
+            <Reveal delay={0} className="mb-8 flex items-center justify-between">
               <div>
-                <span className="detail-label block mb-3">Next Project</span>
-                <Link
-                  href={`/works/${nextProject!.id}`}
-                  className="text-[clamp(28px,4vw,48px)] font-bold tracking-[-0.03em] leading-tight text-white no-underline transition-colors hover:text-accent"
-                >
-                  {nextProject!.title}
-                </Link>
+                <span className="text-xs font-mono uppercase tracking-wider text-accent block mb-2 font-semibold">Explore More</span>
+                <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-white">More Projects</h2>
               </div>
               <Link href="/works" className="sec-cta">
                 All Projects
@@ -221,6 +184,43 @@ export default async function ProjectPage({ params }: PageProps) {
                 </svg>
               </Link>
             </Reveal>
+
+            {/* Horizontal Scrollable Row */}
+            <Reveal delay={0}>
+              <div className="flex gap-6 overflow-x-auto pb-6 scrollbar-none snap-x snap-mandatory -mx-6 px-6 md:-mx-13 md:px-13">
+                {otherProjects.map((other) => (
+                  <Link
+                    key={other.id}
+                    href={`/works/${other.id}`}
+                    className="group flex-none w-[280px] sm:w-[340px] md:w-[400px] snap-start text-white no-underline block"
+                  >
+                    <div className="w-full aspect-[16/9] rounded-2xl overflow-hidden border border-white/10 bg-white/[0.02] mb-4 transition-colors group-hover:border-accent/40">
+                      {other.cover ? (
+                        <Image
+                          src={other.cover}
+                          alt={other.title}
+                          width={600}
+                          height={337}
+                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                        />
+                      ) : (
+                        <div className={`proj-${other.gradient} w-full h-full flex items-center justify-center`}>
+                          <span className="text-white/20 text-xs font-mono">{other.title}</span>
+                        </div>
+                      )}
+                    </div>
+                    <div className="flex items-baseline justify-between gap-2 px-0.5">
+                      <h3 className="text-base md:text-lg font-bold group-hover:text-accent transition-colors">
+                        {other.title}
+                      </h3>
+                      <span className="text-white/30 group-hover:text-accent group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" aria-hidden="true">
+                        ↗
+                      </span>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </Reveal>
           </div>
         </div>
       </main>
@@ -229,3 +229,4 @@ export default async function ProjectPage({ params }: PageProps) {
     </>
   );
 }
+

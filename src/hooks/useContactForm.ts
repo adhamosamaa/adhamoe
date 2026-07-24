@@ -54,10 +54,14 @@ export function useContactForm(): UseContactFormResult {
 
       form.reset();
       setStatus('success');
-      setStatusMessage('Thanks — your message is on its way. I’ll reply soon.');
-    } catch (error: any) {
+      setStatusMessage('Thanks - your message is on its way. I’ll reply soon.');
+    } catch (error: unknown) {
+      const message =
+        error instanceof Error
+          ? error.message
+          : 'Something went wrong sending that. Please try again or email me directly.';
       setStatus('error');
-      setStatusMessage(error.message || 'Something went wrong sending that. Please try again or email me directly.');
+      setStatusMessage(message);
     }
   };
 

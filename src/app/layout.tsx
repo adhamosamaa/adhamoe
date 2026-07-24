@@ -22,18 +22,18 @@ const dmSerifDisplay = DM_Serif_Display({
 });
 
 export const metadata: Metadata = {
-  title: 'Adham Osama',
+  title: 'Adham Osama - Graphic Designer',
   description:
-    'Adham Osama is a Graphic Designer based in Egypt, specializing in Social media design.',
+    'Adham Osama is a Graphic Designer with 2+ years of experience specializing in social media design, visual identity, and AI-powered creative workflows.',
   metadataBase: new URL('https://adhamoe.vercel.app'),
   alternates: {
     canonical: '/',
   },
   openGraph: {
     type: 'website',
-    title: 'Adham Osama — Graphic Designer',
+    title: 'Adham Osama - Graphic Designer',
     description:
-      'Adham Osama is a Graphic Designer based in Egypt, specializing in Social media design.',
+      'Adham Osama is a Graphic Designer with 2+ years of experience specializing in social media design, visual identity, and AI-powered creative workflows.',
     images: ['/images/adham-pro.png'],
   },
   keywords: ['adhamoe', 'Adham Osama Elghobary', 'Adham Osama', 'Graphic Designer', 'AI Art Director', 'Egypt', 'Portfolio'],
@@ -52,8 +52,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" className={`${spaceGrotesk.variable} ${dmSerifDisplay.variable}`} suppressHydrationWarning>
-      <body className="bg-bg text-white font-display" suppressHydrationWarning>
+    <html lang="en" className={`${spaceGrotesk.variable} ${dmSerifDisplay.variable}`}>
+      <body className="bg-bg text-white font-display">
         <SparkSprite />
         {children}
         <SpeedInsights />

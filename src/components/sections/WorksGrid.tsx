@@ -47,10 +47,10 @@ export function WorksGrid({ projects }: WorksGridProps) {
         ))}
       </Reveal>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-y-20 md:gap-y-28 gap-x-12 md:gap-x-16">
         {visible.map((project, index) => (
           <Reveal key={project.id} delay={REVEAL_DELAYS[index % REVEAL_DELAYS.length]}>
-            <ProjectCard project={project} />
+            <ProjectCard project={project} priority={index < 2} />
           </Reveal>
         ))}
       </div>

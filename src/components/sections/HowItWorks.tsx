@@ -30,8 +30,10 @@ export function HowItWorks() {
           <div className="hiw-glow hiw-glow--left" aria-hidden="true"></div>
           <div className="hiw-glow hiw-glow--right" aria-hidden="true"></div>
 
-          {howItWorksCards.map((card) => (
-            <HiwCard key={card.id} card={card} />
+          {howItWorksCards.map((card, index) => (
+            <Reveal key={card.id} delay={index * 100} direction="up" distance={20}>
+              <HiwCard card={card} />
+            </Reveal>
           ))}
         </div>
       </div>

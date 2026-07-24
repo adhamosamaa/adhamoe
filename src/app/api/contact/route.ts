@@ -1,6 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
+/** Escapes HTML special characters to prevent XSS in email templates. */
+function escapeHtml(str: string): string {
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
 // Basic in-memory rate limiting.
 // Note: In serverless environments, this will reset on cold starts.
 const rateLimitMap = new Map<string, { count: number; lastReset: number }>();
@@ -88,15 +97,15 @@ export async function POST(req: NextRequest) {
       from: 'Portfolio Contact Form <onboarding@resend.dev>', // Should be a verified domain in prod
       to: process.env.TO_EMAIL,
       replyTo: trimmedEmail,
-      subject: `New Portfolio Contact • ${trimmedName}`,
+      subject: `New Portfolio Contact • ${escapeHtml(trimmedName)}`,
       html: `
         <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
           <h2>New Contact Form Submission</h2>
-          <p><strong>Name:</strong> ${trimmedName}</p>
-          <p><strong>Email:</strong> ${trimmedEmail}</p>
+          <p><strong>Name:</strong> ${escapeHtml(trimmedName)}</p>
+          <p><strong>Email:</strong> ${escapeHtml(trimmedEmail)}</p>
           <p><strong>Time:</strong> ${new Date().toISOString()}</p>
           <hr />
-          <p style="white-space: pre-wrap;">${trimmedMessage}</p>
+          <p style="white-space: pre-wrap;">${escapeHtml(trimmedMessage)}</p>
         </div>
       `,
     });

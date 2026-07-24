@@ -8,7 +8,7 @@ import { WorksGrid } from '@/components/sections/WorksGrid';
 import { projects } from '@/data/projects';
 
 export const metadata: Metadata = {
-  title: 'Works — Adham Osama',
+  title: 'Works - Adham Osama',
   description:
     'Selected projects in graphic design, social media campaigns, AI art direction, and automation by Adham Osama.',
 };

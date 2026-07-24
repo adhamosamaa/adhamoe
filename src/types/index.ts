@@ -40,7 +40,7 @@ export interface Project {
   icon: ProjectIcon;
   /** Cover image path for the project detail hero. */
   cover: string;
-  /** Gallery image paths — falls back to cover if empty. */
+  /** Gallery image paths - falls back to cover if empty. */
   gallery: string[];
   /** Category for filtering on the works page. */
   category: string;
@@ -87,7 +87,7 @@ export interface SkillRowData {
 export interface BioParagraph {
   id: string;
   text: string;
-  /** Exact substring of `text` to render as bold — omit for plain paragraphs. */
+  /** Exact substring of `text` to render as bold - omit for plain paragraphs. */
   boldPhrase?: string;
 }
 

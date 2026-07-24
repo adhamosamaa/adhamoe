@@ -2,76 +2,77 @@ import type { Project } from '@/types';
 
 export const projects: Project[] = [
   {
-    id: 'food-industry-ksa',
-    title: 'Food Industry in KSA',
+    id: 'chocolate-social-media-designs',
+    title: 'Chocolate Social Media Designs',
     description:
-      'A comprehensive social media design project consisting of over 30 distinct designs tailored for the Saudi market.',
-    tags: ['Social Media', 'AI Design'],
+      'A luxury visual design campaign showcasing premium chocolate products for social media platforms.',
+    tags: ['Social Media', 'Visual Design', 'Art Direction'],
     year: '2026',
     href: '#',
     gradient: 'gradient-1',
     icon: 'orbit',
-    cover: '/images/projects/food-industry-ksa/cover.png',
+    cover: '/images/projects/Chocolate - Social Media Designs/cover.webp',
     gallery: [
-      '/images/projects/food-industry-ksa/cover.png',
-      '/images/projects/food-industry-ksa/cover.png',
-      '/images/projects/food-industry-ksa/cover.png',
+      '/images/projects/Chocolate - Social Media Designs/cover.webp',
+      '/images/projects/Chocolate - Social Media Designs/03.png',
     ],
     category: 'Design',
     overview:
-      'A large-scale social media campaign designed for the food industry in the Kingdom of Saudi Arabia. The project involved creating a cohesive visual identity across multiple platforms, with over 30 unique designs that blend cultural sensitivity with modern aesthetics. Each piece was carefully crafted to resonate with the Saudi market while maintaining international design standards.',
-    services: ['Social Media Design', 'Visual Identity', 'Content Strategy', 'Art Direction', 'Brand Guidelines'],
-    tools: ['Adobe Illustrator', 'Adobe Photoshop', 'Midjourney', 'Figma'],
+      'A high-end visual design project crafted for a gourmet chocolate brand. Focusing on rich textures, deep color harmonies, and elegant typography to captivate audience engagement across social media channels.',
+    services: ['Social Media Design', 'Visual Identity', 'Art Direction', 'Content Strategy'],
+    tools: ['Adobe Photoshop', 'Adobe Illustrator', 'Midjourney', 'Figma'],
     challenge:
-      'The primary challenge was creating a visual language that authentically represents Saudi food culture while appealing to a modern, digitally-savvy audience. The designs needed to work across multiple social media platforms with varying aspect ratios and content requirements, all while maintaining a consistent brand voice.',
+      'Highlighting the sensory richness of gourmet chocolate in a static digital medium required meticulous attention to lighting, color balance, and appetizing presentation.',
     solution:
-      'I developed a modular design system with flexible components that could adapt to different platforms and content types. By leveraging AI-assisted workflows with Midjourney for initial concept exploration and Adobe Creative Suite for final execution, I was able to maintain quality and consistency across all 30+ deliverables while meeting tight deadlines.',
+      'I created a unified visual style incorporating warm ambient lighting, elegant serif typography, and premium product layout composition.',
   },
   {
-    id: 'adobe-workflow-scripts',
-    title: 'Adobe Workflow Scripts',
+    id: 'coffee-social-media-designs',
+    title: 'Coffee Social Media Designs',
     description:
-      'Custom presentation scripts for Illustrator and Photoshop to automate slide generation and image batching.',
-    tags: ['Automation', 'JavaScript'],
+      'A vibrant social media series crafted for specialty coffee branding and promotional storytelling.',
+    tags: ['Social Media', 'Branding', 'Art Direction'],
     year: '2026',
     href: '#',
     gradient: 'gradient-2',
-    icon: 'square',
-    cover: '/images/projects/adobe-workflow-scripts/cover.webp',
+    icon: 'peak',
+    cover: '/images/projects/cooffe - Social Media Designs/cover.png',
     gallery: [
-      '/images/projects/adobe-workflow-scripts/01.webp',
-      '/images/projects/adobe-workflow-scripts/02.webp',
+      '/images/projects/cooffe - Social Media Designs/cover.png',
     ],
-    category: 'Automation',
+    category: 'Design',
     overview:
-      'A suite of custom JavaScript scripts built for Adobe Illustrator and Photoshop that automate repetitive design tasks. These tools handle slide generation, image batching, and asset export — turning hours of manual work into minutes of automated processing. The scripts integrate seamlessly into existing creative workflows.',
-    services: ['Script Development', 'Workflow Automation', 'Tool Design', 'Documentation'],
-    tools: ['JavaScript', 'Adobe Illustrator Scripting', 'Adobe Photoshop Scripting', 'ExtendScript'],
+      'An engaging social media campaign for a specialty coffee brand. The designs blend rustic warmth with modern typography to communicate brand story and bean origin.',
+    services: ['Social Media Design', 'Content Creation', 'Branding'],
+    tools: ['Adobe Illustrator', 'Adobe Photoshop', 'Figma'],
     challenge:
-      'Designers often spend significant time on repetitive tasks like resizing, exporting, and formatting assets for different platforms. These manual processes are error-prone and consume creative energy that could be better spent on actual design work.',
+      'Creating distinct visual posts that stand out in crowded social feeds while remaining cohesive with the coffee brand identity.',
     solution:
-      'I built a collection of ExtendScript-based automation tools that handle batch operations within Adobe applications. The scripts feature error handling, progress feedback, and configurable parameters so designers can customize the output without touching code. This reduced production time by an estimated 60% for routine tasks.',
+      'Developed high-contrast visual compositions highlighting coffee craftsmanship, roasted texture, and modern typography.',
   },
   {
-    id: 'hekayat-ai-series',
-    title: 'Hekayat AI Series',
+    id: 'automotive-social-media-designs',
+    title: 'Automotive Social Media Designs',
     description:
-      'Scripting and visual direction for a YouTube series exploring the history and conceptual development of AI.',
-    tags: ['Content', 'Direction'],
+      'Dynamic and powerful social media visual artwork engineered for the automotive industry.',
+    tags: ['Social Media', 'Automotive', 'Art Direction'],
     year: '2026',
     href: '#',
     gradient: 'gradient-3',
-    icon: 'peak',
-    cover: '',
-    gallery: [],
-    category: 'Content',
+    icon: 'square',
+    cover: '/images/projects/Automotive Social Media Designs/02.png',
+    gallery: [
+      '/images/projects/Automotive Social Media Designs/02.png',
+    ],
+    category: 'Design',
     overview:
-      'Hekayat AI is a YouTube series that explores the fascinating history and conceptual development of artificial intelligence. From early philosophical ideas to modern machine learning breakthroughs, each episode weaves together storytelling, visual design, and educational content. I handled both the scripting and visual direction, ensuring a cohesive narrative across the series.',
-    services: ['Script Writing', 'Visual Direction', 'Storyboarding', 'Motion Graphics', 'Content Strategy'],
-    tools: ['Adobe After Effects', 'Adobe Premiere Pro', 'Midjourney', 'Google Docs'],
+      'A bold automotive advertising campaign designed for social media channels. Emphasizes speed, sleek engineering, and high-energy motion aesthetics.',
+    services: ['Social Media Design', 'Graphic Design', 'Art Direction'],
+    tools: ['Adobe Photoshop', 'Adobe Illustrator'],
     challenge:
-      'Communicating complex AI concepts to a general Arabic-speaking audience required balancing technical accuracy with engaging storytelling. The visual language needed to make abstract concepts tangible without oversimplifying the subject matter.',
+      'Conveying motion, speed, and premium vehicle details in a compelling static artwork format.',
     solution:
-      'I developed a distinctive visual style combining minimalist motion graphics with AI-generated imagery to illustrate abstract concepts. Each episode follows a narrative arc that builds understanding progressively, using analogies and historical context to make the content accessible and memorable.',
+      'Utilized dramatic directional lighting, dynamic motion blur techniques, and bold typographic overlays.',
   },
+
 ];

@@ -6,26 +6,29 @@ import { skills } from '@/data/skills';
 
 export function Skills() {
   return (
-    <section id="skills" className="py-24 md:py-32 border-t border-white/5">
+    <section id="skills" className="py-24 md:py-36 border-t border-white/5 relative">
       <div className="max-w-(--max-width-page) mx-auto px-6 md:px-13">
-        <div className="grid grid-cols-1 xl:grid-cols-[300px_1fr] gap-12 xl:gap-20 items-start">
-          <Reveal delay={0} className="xl:sticky xl:top-30">
-            <SectionLabel className="mb-4">Capabilities</SectionLabel>
-            <h2 className="text-[clamp(36px,3.5vw,52px)] font-bold tracking-[-0.03em] leading-tight mb-5">
-              What I bring to <AccentText>the table.</AccentText>
-            </h2>
-            <p className="text-sm text-gray leading-[1.7] font-light">
-              A focused toolkit built around clarity, craft, and technical efficiency.
-            </p>
-          </Reveal>
+        {/* Section Header */}
+        <Reveal delay={0} className="max-w-2xl mb-16 md:mb-20">
+          <SectionLabel className="mb-4">Capabilities</SectionLabel>
+          <h2 className="text-[clamp(38px,4.5vw,58px)] font-bold tracking-[-0.03em] leading-[0.98] mb-5">
+            What I bring to <AccentText>the table.</AccentText>
+          </h2>
+          <p className="text-base text-gray-300/80 leading-relaxed font-light">
+            A focused toolkit built around clarity, craft, and technical efficiency across visual design, AI, and workflow automation.
+          </p>
+        </Reveal>
 
-          <Reveal delay={80} className="flex flex-col">
-            {skills.map((skill, index) => (
-              <SkillRow key={skill.id} skill={skill} isFirst={index === 0} />
-            ))}
-          </Reveal>
+        {/* 2x2 Capabilities Card Matrix */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+          {skills.map((skill, index) => (
+            <Reveal key={skill.id} delay={index * 80}>
+              <SkillRow skill={skill} index={index} />
+            </Reveal>
+          ))}
         </div>
       </div>
     </section>
   );
 }
+

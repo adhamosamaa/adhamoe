@@ -8,7 +8,7 @@
   --color-accent-glow: #04d9d921;
   --font-display: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
   --font-serif: var(--font-dm-serif), ui-serif, serif;
-  --max-width-page: 1320px;
+  --max-width-page: 1440px;
 }
 
 @layer base {
@@ -39,7 +39,7 @@
     color: var(--color-accent);
     letter-spacing: -0.05em;
     font-style: italic;
-    font-weight: 400;
+    font-weight: 300;
   }
 
   .sec-label {
@@ -181,31 +181,13 @@
     height: 4px;
   }
 
-  /* ── Project cards ───────────────────────────── */
-  .proj-card {
-    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
-    border-radius: var(--radius-2xl);
+  /* ── Project showcase ─────────────────────────── */
+  .proj-card-thumb {
+    border-color: rgba(255, 255, 255, 0.1);
   }
 
-  .proj-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 8px 30px rgba(4, 217, 217, 0.1);
-  }
-
-  .proj-card:hover .proj-title {
-    color: var(--color-accent);
-  }
-
-  .proj-card:hover .proj-card-thumb {
-    border-color: rgba(4, 217, 217, 0.25);
-  }
-
-  .proj-img {
-    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  .proj-card:hover .proj-img {
-    transform: scale(1.03);
+  .group:hover .proj-card-thumb {
+    border-color: rgba(4, 217, 217, 0.35);
   }
 
   .proj-tag {
@@ -727,25 +709,72 @@
     color: var(--color-accent);
   }
 
-  /* ── Hero entrance animations ────────────────── */
-  .hero-in-tag {
-    opacity: 0;
-    animation: 0.8s 0.1s forwards up;
+
+  /* ── Bento Grid Utilities ────────────────────── */
+  .bento-card {
+    position: relative;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 24px;
+    padding: 28px;
+    backdrop-filter: blur(12px);
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    overflow: hidden;
   }
 
-  .hero-in-h1 {
-    opacity: 0;
-    animation: 1s 0.25s forwards up;
+  .bento-card:hover {
+    background: rgba(255, 255, 255, 0.035);
+    border-color: rgba(4, 217, 217, 0.3);
+    box-shadow: 0 12px 36px rgba(4, 217, 217, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    transform: translateY(-2px);
   }
 
-  .hero-in-desc {
-    opacity: 0;
-    animation: 0.9s 0.45s forwards up;
+  .bento-stat-card {
+    position: relative;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(4, 217, 217, 0.04) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    padding: 24px;
+    transition: all 0.35s ease;
+    overflow: hidden;
   }
 
-  .hero-in-btns {
+  .bento-stat-card:hover {
+    border-color: rgba(4, 217, 217, 0.35);
+    box-shadow: 0 8px 30px rgba(4, 217, 217, 0.12);
+    transform: translateY(-2px);
+  }
+
+  .bento-glow-overlay {
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center, rgba(4, 217, 217, 0.08) 0%, transparent 60%);
+    pointer-events: none;
+    transition: opacity 0.5s ease;
     opacity: 0;
-    animation: 0.9s 0.6s forwards up;
+  }
+
+  .bento-card:hover .bento-glow-overlay,
+  .bento-stat-card:hover .bento-glow-overlay {
+    opacity: 1;
+  }
+
+  .floating-badge {
+    background: rgba(0, 13, 12, 0.75);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 9999px;
+    padding: 8px 16px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
   }
 }
 
@@ -773,21 +802,10 @@
   }
 }
 
-@keyframes up {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
 
   .spark-icon,
-  .ticker-track,
-  .hero-in-tag,
-  .hero-in-h1,
-  .hero-in-desc,
-  .hero-in-btns {
+  .ticker-track {
     opacity: 1 !important;
     animation: none !important;
     transform: none !important;
