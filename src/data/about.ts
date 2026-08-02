@@ -26,6 +26,7 @@ export const experience: ExperienceEntry[] = [
     period: '03/2026 – Present',
     description:
       'Designed carousel and social media creative sets for multiple brand accounts, adapting visual style to each client\'s identity. Partnered with the branding team to translate campaign briefs into on-brand marketing assets.',
+    tags: ['Carousel Sets', 'Brand Alignment', 'Campaign Briefs'],
   },
   {
     id: 'tar-group',
@@ -34,6 +35,7 @@ export const experience: ExperienceEntry[] = [
     period: '10/2025 – 07/2026',
     description:
       'Delivered 250+ social media creatives per month across clients in multiple industries, balancing volume with brand-specific visual standards. Worked with cross-functional teams (marketing, strategy) to keep campaign output on-brand and on-deadline.',
+    tags: ['250+ Creatives/Mo', 'Multi-Industry', 'High-Volume Production'],
   },
   {
     id: 'tar-group-intern',
@@ -42,6 +44,7 @@ export const experience: ExperienceEntry[] = [
     period: '07/2025 – 09/2025',
     description:
       'Built foundational design skills by contributing to live marketing campaigns under agency deadlines. Practiced photo manipulation and creative problem-solving on real client briefs, transitioning from internship tasks to full production work.',
+    tags: ['Photo Manipulation', 'Campaign Production', 'Agency Deadlines'],
   },
   {
     id: 'hosoun',
@@ -50,6 +53,7 @@ export const experience: ExperienceEntry[] = [
     period: '02/2025 – 03/2025',
     description:
       'Designed website banners, digital ads, and social creatives for the Saudi education market. Adapted visual direction for a new regional audience while keeping designs aligned with the platform\'s brand identity.',
+    tags: ['Saudi Market', 'Digital Ads', 'Website Banners'],
   },
   {
     id: 'center-focus',
@@ -58,6 +62,7 @@ export const experience: ExperienceEntry[] = [
     period: '10/2024 – 06/2025',
     description:
       'Designed social media creatives and marketing materials for the center\'s ongoing campaigns. Rebuilt the center\'s visual identity from inconsistent assets into a unified brand presence.',
+    tags: ['Visual Identity Overhaul', 'Marketing Collateral', 'Brand System'],
   },
 ];
 

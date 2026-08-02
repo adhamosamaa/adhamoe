@@ -23,8 +23,7 @@ export const siteSettings: SiteSettings = {
   contactHighlight: 'in mind?',
   contactDescription:
     'Open to freelance projects, brand collaborations, and long-term partnerships.',
-  email: 'adhamo.elghobary@gmail.com',
-  maxWidthPage: '1320px',
+  email: 'hello.adhamoe@gmail.com',
   cv: '/cv/Adham_Osama_Resume_2026.pdf',
 };
 

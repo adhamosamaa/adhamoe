@@ -23,7 +23,7 @@ export function Skills() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
           {skills.map((skill, index) => (
             <Reveal key={skill.id} delay={index * 80}>
-              <SkillRow skill={skill} index={index} />
+              <SkillRow skill={skill} />
             </Reveal>
           ))}
         </div>

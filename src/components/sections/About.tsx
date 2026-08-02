@@ -3,6 +3,7 @@ import { SectionLabel } from '@/components/ui/SectionLabel';
 import { AccentText } from '@/components/ui/AccentText';
 import { Reveal } from '@/components/ui/Reveal';
 import { HighlightText } from '@/components/ui/HighlightText';
+import { ArrowRightIcon } from '@/components/ui/ArrowRightIcon';
 import { ProcessStepCard } from '@/components/cards/ProcessStepCard';
 import { processSteps } from '@/data/process';
 import { siteSettings } from '@/data/settings';
@@ -26,15 +27,7 @@ export function About() {
             ))}
             <Link href="/about" className="sec-cta mt-6">
               More About Me
-              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                <path
-                  d="M3 8h10M9 4l4 4-4 4"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
+              <ArrowRightIcon />
             </Link>
           </Reveal>
 

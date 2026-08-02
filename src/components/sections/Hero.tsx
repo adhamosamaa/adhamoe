@@ -3,6 +3,7 @@ import { SectionLabel } from '@/components/ui/SectionLabel';
 import { AccentText } from '@/components/ui/AccentText';
 import { Reveal } from '@/components/ui/Reveal';
 import { Parallax } from '@/components/ui/Parallax';
+import { ArrowRightIcon } from '@/components/ui/ArrowRightIcon';
 import { SocialRail } from '@/components/layout/SocialRail';
 import { siteSettings } from '@/data/settings';
 
@@ -47,15 +48,7 @@ export function Hero() {
               <a href={siteSettings.cv} target="_blank"
                 rel="noopener noreferrer" download className="btn-ghost">
                 Download CV
-                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                  <path
-                    d="M3 8h10M9 4l4 4-4 4"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+                <ArrowRightIcon />
               </a>
             </div>
           </Reveal>
@@ -65,8 +58,8 @@ export function Hero() {
           <Reveal delay={150} direction="left" scale={0.96} className="w-full max-w-[400px] lg:max-w-[500px]">
             <div className="hero-portrait-frame w-full aspect-[3/4] lg:aspect-[3/4] rounded-3xl overflow-hidden relative">
               <Image
-                src="/images/adham-pro.png"
-                alt="Portrait of Adham Osama, graphic designer and AI art director"
+                src="/images/adham-osama.webp"
+                alt="Portrait of Adham Osama, graphic designer"
                 width={840}
                 height={1050}
                 priority

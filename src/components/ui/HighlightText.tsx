@@ -5,7 +5,7 @@ interface HighlightTextProps {
   className?: string;
 }
 
-/** Splits `paragraph.text` on `paragraph.boldPhrase` and wraps the match in <strong>. */
+/** Splits `paragraph.text` on `paragraph.boldPhrase` and wraps the first match in <strong>. */
 export function HighlightText({ paragraph, className }: HighlightTextProps) {
   const { text, boldPhrase } = paragraph;
 
@@ -13,7 +13,13 @@ export function HighlightText({ paragraph, className }: HighlightTextProps) {
     return <p className={className}>{text}</p>;
   }
 
-  const [before, after] = text.split(boldPhrase);
+  const idx = text.indexOf(boldPhrase);
+  if (idx === -1) {
+    return <p className={className}>{text}</p>;
+  }
+
+  const before = text.slice(0, idx);
+  const after = text.slice(idx + boldPhrase.length);
 
   return (
     <p className={className}>

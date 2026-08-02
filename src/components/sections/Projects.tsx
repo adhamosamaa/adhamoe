@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { SectionLabel } from '@/components/ui/SectionLabel';
 import { AccentText } from '@/components/ui/AccentText';
 import { Reveal } from '@/components/ui/Reveal';
+import { ArrowRightIcon } from '@/components/ui/ArrowRightIcon';
 import { ProjectCard } from '@/components/cards/ProjectCard';
 import { projects } from '@/data/projects';
 
@@ -32,15 +33,7 @@ export function Projects() {
         <Reveal delay={0} className="mt-20 md:mt-28 flex justify-center">
           <Link href="/works" className="sec-cta">
             See More Projects
-            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-              <path
-                d="M3 8h10M9 4l4 4-4 4"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
+            <ArrowRightIcon />
           </Link>
         </Reveal>
       </div>

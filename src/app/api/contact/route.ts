@@ -115,7 +115,7 @@ export async function POST(req: NextRequest) {
     });
 
     try {
-      const result: any = await Promise.race([sendEmailPromise, timeoutPromise]);
+      const result = await Promise.race([sendEmailPromise, timeoutPromise]) as Awaited<typeof sendEmailPromise>;
       
       if (result.error) {
         console.error('Resend API Error:', result.error);
@@ -124,8 +124,9 @@ export async function POST(req: NextRequest) {
 
       return NextResponse.json({ success: true, data: result.data });
 
-    } catch (sendError: any) {
-      console.error('Email sending exception/timeout:', sendError.message);
+    } catch (sendError: unknown) {
+      const message = sendError instanceof Error ? sendError.message : 'Unknown error';
+      console.error('Email sending exception/timeout:', message);
       return NextResponse.json({ error: 'Failed to send message due to a network timeout or error.' }, { status: 500 });
     }
 

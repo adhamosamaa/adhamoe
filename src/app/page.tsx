@@ -1,5 +1,6 @@
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
+import { BackgroundGlow } from '@/components/ui/BackgroundGlow';
 import { Hero } from '@/components/sections/Hero';
 import { Ticker } from '@/components/sections/Ticker';
 import { Projects } from '@/components/sections/Projects';
@@ -7,17 +8,22 @@ import { HowItWorks } from '@/components/sections/HowItWorks';
 import { About } from '@/components/sections/About';
 import { Skills } from '@/components/sections/Skills';
 import { Contact } from '@/components/sections/Contact';
+import { getWebPageSchema, buildSchemaGraph } from "@/lib/schema";
+import { JsonLd } from "@/components/JsonLd";
 
 export default function Home() {
+  const schema = buildSchemaGraph(
+    getWebPageSchema({
+      path: "/",
+      title: "Adham Osama - Graphic Designer",
+      description:
+        "Portfolio of Adham Osama. Graphic Designer specializing in social media design, brand identity, and visual storytelling.",
+    })
+  );
   return (
     <>
-      <div
-        className="glow fixed -top-[20vh] left-1/2 -translate-x-1/2 w-[min(900px,120vw)] h-[70vh] pointer-events-none z-0 blur-[40px]"
-        style={{
-          background: 'radial-gradient(ellipse at 60% 30%, var(--color-accent-glow) 0%, transparent 65%)',
-        }}
-        aria-hidden="true"
-      ></div>
+      <JsonLd data={schema} />
+      <BackgroundGlow />
 
       <Navbar />
 

@@ -1,7 +1,10 @@
 import type { Metadata } from 'next';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
+import { BackgroundGlow } from '@/components/ui/BackgroundGlow';
 import { AboutPageContent } from '@/components/sections/AboutPageContent';
+import { buildSchemaGraph, getAboutPageSchema, getWebPageSchema } from '@/lib/schema';
+import { JsonLd } from '@/components/JsonLd';
 
 export const metadata: Metadata = {
   title: 'About - Adham Osama',
@@ -9,17 +12,19 @@ export const metadata: Metadata = {
     'Learn more about Adham Osama - graphic designer and AI art director based in Egypt, specializing in social media design, brand identity, and AI-assisted workflows.',
 };
 
+
 export default function AboutPage() {
+  const title = "About — Adham Osama";
+  const description = "Background, skills, and approach to design and AI art direction.";
+
+  const schema = buildSchemaGraph(
+    getAboutPageSchema({ title, description }),
+    getWebPageSchema({ path: "/about", title, description })
+  );
   return (
     <>
-      {/* Background Ambient Glow */}
-      <div
-        className="glow fixed -top-[20vh] left-1/2 -translate-x-1/2 w-[min(900px,120vw)] h-[70vh] pointer-events-none z-0 blur-[40px]"
-        style={{
-          background: 'radial-gradient(ellipse at 60% 30%, var(--color-accent-glow) 0%, transparent 65%)',
-        }}
-        aria-hidden="true"
-      />
+      <JsonLd data={schema} />
+      <BackgroundGlow />
 
       <Navbar />
       <AboutPageContent />

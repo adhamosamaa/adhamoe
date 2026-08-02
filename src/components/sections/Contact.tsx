@@ -85,7 +85,7 @@ export function Contact() {
                       placeholder={field.placeholder}
                       required
                       autoComplete={field.autoComplete}
-                      className="field-input border-0 border-b border-white/15 rounded-none bg-transparent px-0 py-3.5 focus:border-accent focus:bg-transparent text-base transition-all placeholder:text-gray/40"
+                      className="field-input border-b border-t-0 border-x-0 border-white/15 rounded-none bg-transparent px-0 py-3.5 focus:border-b-accent focus:border-t-0 focus:border-x-0 focus:bg-transparent text-base transition-all placeholder:text-gray/40 outline-none focus:outline-none focus:ring-0 focus:ring-offset-0 focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0"
                     />
                   </div>
                 ))}
@@ -101,7 +101,7 @@ export function Contact() {
                   placeholder="Tell me about your project..."
                   rows={5}
                   required
-                  className="field-input border-0 border-b border-white/15 rounded-none bg-transparent px-0 py-3.5 focus:border-accent focus:bg-transparent text-base transition-all resize-y min-h-[140px] placeholder:text-gray/40"
+                  className="field-input border-b border-t-0 border-x-0 border-white/15 rounded-none bg-transparent px-0 py-3.5 focus:border-b-accent focus:border-t-0 focus:border-x-0 focus:bg-transparent text-base transition-all resize-y min-h-[140px] placeholder:text-gray/40 outline-none focus:outline-none focus:ring-0 focus:ring-offset-0 focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0"
                 ></textarea>
               </div>
 

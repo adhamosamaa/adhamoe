@@ -4,25 +4,12 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
+import { BackgroundGlow } from '@/components/ui/BackgroundGlow';
 import { SectionLabel } from '@/components/ui/SectionLabel';
 import { Reveal } from '@/components/ui/Reveal';
+import { ArrowRightIcon } from '@/components/ui/ArrowRightIcon';
+import { iconGlyphs } from '@/components/ui/ProjectGlyph';
 import { projects } from '@/data/projects';
-import type { ProjectIcon } from '@/types';
-
-/* ── Glyph lookup for gradient placeholders ── */
-const iconGlyphs: Record<ProjectIcon, () => React.JSX.Element> = {
-  orbit: () => (
-    <>
-      <circle cx="30" cy="30" r="20" stroke="#7DAF88" strokeWidth=".6" />
-      <circle cx="30" cy="30" r="12" stroke="#7DAF88" strokeWidth=".6" />
-      <circle cx="30" cy="30" r="3" fill="#7DAF88" />
-    </>
-  ),
-  square: () => <rect x="15" y="15" width="30" height="30" rx="2" stroke="#9B8FCC" strokeWidth=".6" />,
-  peak: () => (
-    <path d="M15 42 L30 18 L45 42" stroke="#CC8F8F" strokeWidth=".6" strokeLinecap="round" strokeLinejoin="round" />
-  ),
-};
 
 /* ── Static generation ── */
 interface PageProps {
@@ -63,13 +50,7 @@ export default async function ProjectPage({ params }: PageProps) {
 
   return (
     <>
-      <div
-        className="glow fixed -top-[20vh] left-1/2 -translate-x-1/2 w-[min(900px,120vw)] h-[70vh] pointer-events-none z-0 blur-[40px]"
-        style={{
-          background: 'radial-gradient(ellipse at 60% 30%, var(--color-accent-glow) 0%, transparent 65%)',
-        }}
-        aria-hidden="true"
-      />
+      <BackgroundGlow />
 
       <Navbar />
 
@@ -153,7 +134,7 @@ export default async function ProjectPage({ params }: PageProps) {
                   >
                     <Image
                       src={img}
-                      alt={`${project.title} - Showcase ${i + 1}`}
+                      alt={`${project.title} — image ${i + 1} of ${galleryImages.length}`}
                       width={1920}
                       height={1080}
                       className="w-full h-auto block"
@@ -173,15 +154,7 @@ export default async function ProjectPage({ params }: PageProps) {
               </div>
               <Link href="/works" className="sec-cta">
                 All Projects
-                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                  <path
-                    d="M3 8h10M9 4l4 4-4 4"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+                <ArrowRightIcon />
               </Link>
             </Reveal>
 

@@ -35,7 +35,6 @@ export interface Project {
   description: string;
   tags: string[];
   year: string;
-  href: string;
   gradient: ProjectGradient;
   icon: ProjectIcon;
   /** Cover image path for the project detail hero. */
@@ -113,7 +112,6 @@ export interface SiteSettings {
   contactHighlight: string;
   contactDescription: string;
   email: string;
-  maxWidthPage: string;
   cv: string;
 }
 
@@ -124,6 +122,8 @@ export interface ExperienceEntry {
   company: string;
   period: string;
   description: string;
+  /** Short skill/highlight tags shown alongside the entry. */
+  tags?: string[];
 }
 
 /** One software / tool item for the about page. */

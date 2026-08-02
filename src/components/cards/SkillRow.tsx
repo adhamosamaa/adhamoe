@@ -13,7 +13,6 @@ const skillIcons: Record<string, React.FC<{ className?: string }>> = {
 
 interface SkillRowProps {
   skill: SkillRowData;
-  index?: number;
 }
 
 export function SkillRow({ skill }: SkillRowProps) {

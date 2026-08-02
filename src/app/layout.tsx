@@ -5,6 +5,8 @@ import { Analytics } from '@vercel/analytics/next';
 import { Space_Grotesk, DM_Serif_Display } from 'next/font/google';
 import { SparkSprite } from '@/components/ui/SparkSprite';
 import './globals.css';
+import { buildSchemaGraph, getPersonSchema, getWebsiteSchema } from '@/lib/schema';
+import { JsonLd } from '@/components/JsonLd';
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
@@ -51,10 +53,12 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
+  const schema = buildSchemaGraph(getWebsiteSchema(), getPersonSchema());
   return (
     <html lang="en" className={`${spaceGrotesk.variable} ${dmSerifDisplay.variable}`}>
       <body className="bg-bg text-white font-display">
         <SparkSprite />
+        <JsonLd data={schema} />
         {children}
         <SpeedInsights />
         <Analytics />

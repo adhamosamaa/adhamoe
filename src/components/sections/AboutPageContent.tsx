@@ -159,14 +159,7 @@ export function AboutPageContent() {
 
           <div className="divide-y divide-white/10">
             {experience.map((entry, index) => {
-              const tagsMap: Record<string, string[]> = {
-                bareq: ['Carousel Sets', 'Brand Alignment', 'Campaign Briefs'],
-                'tar-group': ['250+ Creatives/Mo', 'Multi-Industry', 'High-Volume Production'],
-                'tar-group-intern': ['Photo Manipulation', 'Campaign Production', 'Agency Deadlines'],
-                hosoun: ['Saudi Market', 'Digital Ads', 'Website Banners'],
-                'center-focus': ['Visual Identity Overhaul', 'Marketing Collateral', 'Brand System'],
-              };
-              const tags = tagsMap[entry.id] || [];
+              const tags = entry.tags ?? [];
 
               return (
                 <Reveal key={entry.id} delay={index * 80} direction="up">

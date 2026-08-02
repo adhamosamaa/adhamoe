@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
+import { BackgroundGlow } from '@/components/ui/BackgroundGlow';
 import { SectionLabel } from '@/components/ui/SectionLabel';
 import { AccentText } from '@/components/ui/AccentText';
 import { Reveal } from '@/components/ui/Reveal';
@@ -16,13 +17,7 @@ export const metadata: Metadata = {
 export default function WorksPage() {
   return (
     <>
-      <div
-        className="glow fixed -top-[20vh] left-1/2 -translate-x-1/2 w-[min(900px,120vw)] h-[70vh] pointer-events-none z-0 blur-[40px]"
-        style={{
-          background: 'radial-gradient(ellipse at 60% 30%, var(--color-accent-glow) 0%, transparent 65%)',
-        }}
-        aria-hidden="true"
-      />
+      <BackgroundGlow />
 
       <Navbar />
 
