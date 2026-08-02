@@ -94,7 +94,7 @@ export function AboutPageContent() {
                 <div className="rounded-3xl border border-white/10 bg-white/[0.02] p-4 backdrop-blur-md">
                   <div className="w-full aspect-[4/5] rounded-2xl overflow-hidden relative mb-5">
                     <Image
-                      src="/images/adham-pro.png"
+                      src="/images/adham-osama.webp"
                       alt="Adham Osama"
                       width={840}
                       height={1050}

@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     title: 'Adham Osama - Graphic Designer',
     description:
       'Adham Osama is a Graphic Designer with 2+ years of experience specializing in social media design, visual identity, and AI-powered creative workflows.',
-    images: ['/images/adham-pro.png'],
+    images: ['/images/adham-osama.webp'],
   },
   keywords: ['adhamoe', 'Adham Osama Elghobary', 'Adham Osama', 'Graphic Designer', 'AI Art Director', 'Egypt', 'Portfolio'],
   authors: [{ name: 'Adham Osama Elghobary' }],
