@@ -1,4 +1,5 @@
 import { cache } from 'react';
+import { unstable_rethrow } from 'next/navigation';
 import { createClient } from '@/utils/supabase/server';
 import { siteSettings } from '@/data/settings';
 import { aboutHeroParagraphs, experience, softwareList } from '@/data/about';
@@ -87,6 +88,8 @@ export const getSiteSettings = cache(async (): Promise<SiteSettingsRow> => {
 
     return mergeWithDefaults(data as Record<string, unknown>);
   } catch (err) {
+    // Let Next.js internal control-flow errors (dynamic usage, redirect, notFound) propagate.
+    unstable_rethrow(err);
     console.warn(
       `[getSiteSettings] Using default site settings: ${err instanceof Error ? err.message : String(err)}`,
     );
