@@ -1,0 +1,79 @@
+/*
+ * Studio CMS — theme tokens.
+ * Consumed by the semantic `dash-*` colours in tailwind.config.ts.
+ * Light is the base; `.dark` on `.dash-root` switches to the studio-black palette.
+ */
+
+.dash-root {
+  --dash-canvas: #f6f6f4;
+  --dash-surface: #ffffff;
+  --dash-elevated: #efefec;
+  --dash-line: #e4e4e0;
+  --dash-line-strong: #cfcfca;
+  --dash-fg: #0a0a0b;
+  --dash-muted: #5f5f66;
+  --dash-subtle: #9a9aa1;
+  --dash-brand: #029a9a;
+  --dash-brand-fg: #ffffff;
+  --dash-danger: #e5484d;
+  --dash-shadow-card: 0 1px 2px rgb(10 10 11 / 0.04), 0 0 0 1px var(--dash-line);
+  --dash-shadow-pop: 0 18px 40px -12px rgb(10 10 11 / 0.18), 0 0 0 1px var(--dash-line);
+  --dash-ambient: rgb(2 154 154 / 0.07);
+  color-scheme: light;
+}
+
+.dash-root.dark {
+  --dash-canvas: #050505;
+  --dash-surface: #0a0a0b;
+  --dash-elevated: #141416;
+  --dash-line: #1d1d20;
+  --dash-line-strong: #2b2b2f;
+  --dash-fg: #f4f4f5;
+  --dash-muted: #8c8c95;
+  --dash-subtle: #57575e;
+  --dash-brand: #04d9d9;
+  --dash-brand-fg: #001414;
+  --dash-danger: #ff6369;
+  --dash-shadow-card: inset 0 1px 0 rgb(255 255 255 / 0.03), 0 0 0 1px var(--dash-line);
+  --dash-shadow-pop: 0 24px 48px -12px rgb(0 0 0 / 0.7), 0 0 0 1px var(--dash-line-strong);
+  --dash-ambient: rgb(4 217 217 / 0.06);
+  color-scheme: dark;
+}
+
+.dash-root ::selection {
+  background: color-mix(in oklab, var(--dash-brand) 30%, transparent);
+}
+
+/* Soft brand glow behind the top of the content area. */
+.dash-ambient {
+  background:
+    radial-gradient(55% 60% at 50% 0%, var(--dash-ambient), transparent 70%),
+    radial-gradient(30% 40% at 85% 0%, var(--dash-ambient), transparent 70%);
+}
+
+/* Slim, theme-aware scrollbars. */
+.dash-root * {
+  scrollbar-width: thin;
+  scrollbar-color: var(--dash-line-strong) transparent;
+}
+
+/* Skeleton shimmer used by placeholder content. */
+.dash-skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--dash-elevated) 0%,
+    color-mix(in oklab, var(--dash-elevated), var(--dash-fg) 6%) 50%,
+    var(--dash-elevated) 100%
+  );
+  background-size: 200% 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dash-root *,
+  .dash-root *::before,
+  .dash-root *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

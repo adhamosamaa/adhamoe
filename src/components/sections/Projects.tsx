@@ -4,11 +4,12 @@ import { AccentText } from '@/components/ui/AccentText';
 import { Reveal } from '@/components/ui/Reveal';
 import { ArrowRightIcon } from '@/components/ui/ArrowRightIcon';
 import { ProjectCard } from '@/components/cards/ProjectCard';
-import { projects } from '@/data/projects';
+import { getPublishedProjects } from '@/data/projects';
 
 const REVEAL_DELAYS = [0, 100] as const;
 
-export function Projects() {
+export async function Projects() {
+  const projects = await getPublishedProjects();
   return (
     <section id="projects" className="py-24 md:py-36">
       <div className="max-w-(--max-width-page) mx-auto px-6 md:px-13">

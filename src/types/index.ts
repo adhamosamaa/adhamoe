@@ -29,6 +29,14 @@ export type ProjectGradient = 'gradient-1' | 'gradient-2' | 'gradient-3';
 /** The small line-art glyph rendered inside a project card thumbnail. */
 export type ProjectIcon = 'orbit' | 'square' | 'peak';
 
+export type MediaBlockType = 'single' | 'grid' | 'carousel';
+
+export interface MediaBlock {
+  id: string;
+  type: MediaBlockType;
+  urls: string[];
+}
+
 export interface Project {
   id: string;
   title: string;
@@ -41,6 +49,8 @@ export interface Project {
   cover: string;
   /** Gallery image paths - falls back to cover if empty. */
   gallery: string[];
+  /** Block-based media layouts (single, grid, carousel). */
+  mediaBlocks?: MediaBlock[];
   /** Category for filtering on the works page. */
   category: string;
   /** Extended overview paragraph for the project detail page. */

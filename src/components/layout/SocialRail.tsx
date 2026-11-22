@@ -1,9 +1,9 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { socialLinks } from '@/data/social';
+import type { SocialLink } from '@/types';
 
-export function SocialRail() {
+export function SocialRail({ socialLinks }: { socialLinks: SocialLink[] }) {
   return (
     <motion.div
       initial={{ opacity: 0, x: -20 }}

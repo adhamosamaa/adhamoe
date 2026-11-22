@@ -5,38 +5,37 @@ import { Reveal } from '@/components/ui/Reveal';
 import { Parallax } from '@/components/ui/Parallax';
 import { ArrowRightIcon } from '@/components/ui/ArrowRightIcon';
 import { SocialRail } from '@/components/layout/SocialRail';
-import { siteSettings } from '@/data/settings';
+export function Hero({ settings }: { settings: any }) {
 
-export function Hero() {
   return (
     <section id="hero" className="relative min-h-screen flex items-center pt-20 w-full">
-      <SocialRail />
+      <SocialRail socialLinks={settings.social_links} />
 
       <div className="max-w-(--max-width-page) mx-auto px-6 md:px-13 grid grid-cols-1 lg:grid-cols-[1.1fr_1fr] gap-6 items-center w-full xl:pl-13">
         <Parallax speed={8} direction="down" isHero={true} className="flex flex-col justify-center">
           <Reveal delay={0} direction="down" distance={16}>
             <div className="mb-6">
-              <SectionLabel>{siteSettings.role}</SectionLabel>
+              <SectionLabel>{settings.role_title}</SectionLabel>
             </div>
           </Reveal>
 
           <Reveal delay={100} direction="up" distance={20}>
             <h1 className="text-[clamp(56px,7vw,110px)] font-bold tracking-[-0.03em] leading-none">
-              {siteSettings.heroHeadline.map((line) => (
+              {settings.hero_headline.map((line: string) => (
                 <span key={line} className="whitespace-nowrap">
                   {line}
                   <br />
                 </span>
               ))}
               <span className="whitespace-nowrap">
-                <AccentText>{siteSettings.heroHighlight}</AccentText>
+                <AccentText>{settings.hero_highlight}</AccentText>
               </span>
             </h1>
           </Reveal>
 
           <Reveal delay={200} direction="up" distance={20}>
             <p className="text-base leading-[1.7] text-gray max-w-[440px] mt-8">
-              {siteSettings.heroDescription}
+              {settings.hero_description}
             </p>
           </Reveal>
 
@@ -45,7 +44,7 @@ export function Hero() {
               <a href="#projects" className="btn-solid w-full sm:w-auto justify-center">
                 View Projects ↗
               </a>
-              <a href={siteSettings.cv} target="_blank"
+              <a href={settings.cv_url} target="_blank"
                 rel="noopener noreferrer" download className="btn-ghost">
                 Download CV
                 <ArrowRightIcon />

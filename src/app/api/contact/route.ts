@@ -89,7 +89,23 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Message contains too many links.' }, { status: 400 });
     }
 
-    // 6. Send Email via Resend
+    // 6. Save to Supabase
+    const { createClient } = await import('@/utils/supabase/server');
+    const supabase = await createClient();
+    
+    const { error: dbError } = await supabase.from('contact_messages').insert({
+      name: trimmedName,
+      email: trimmedEmail,
+      message: trimmedMessage,
+      status: 'unread',
+    });
+
+    if (dbError) {
+      console.error('Supabase Insert Error:', dbError);
+      return NextResponse.json({ error: 'Failed to save message. Please try again later.' }, { status: 500 });
+    }
+
+    // 7. Send Email via Resend
     const resend = new Resend(process.env.RESEND_API_KEY);
     
     // Implement timeout for Resend API call using Promise.race

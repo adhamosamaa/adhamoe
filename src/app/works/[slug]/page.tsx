@@ -9,7 +9,12 @@ import { SectionLabel } from '@/components/ui/SectionLabel';
 import { Reveal } from '@/components/ui/Reveal';
 import { ArrowRightIcon } from '@/components/ui/ArrowRightIcon';
 import { iconGlyphs } from '@/components/ui/ProjectGlyph';
-import { projects } from '@/data/projects';
+import { getPublishedProjects, getProjectBySlug } from '@/data/projects';
+import { createClient } from '@supabase/supabase-js';
+import { getSiteSettings } from '@/lib/getSiteSettings';
+import { ProjectMediaBlocks } from '@/components/sections/ProjectMediaBlocks';
+
+export const revalidate = 0;
 
 /* ── Static generation ── */
 interface PageProps {
@@ -17,12 +22,17 @@ interface PageProps {
 }
 
 export async function generateStaticParams() {
-  return projects.map((project) => ({ slug: project.id }));
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
+  const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!;
+  const supabase = createClient(supabaseUrl, supabaseKey);
+
+  const { data } = await supabase.from('projects').select('slug').eq('is_published', true);
+  return (data || []).map((project) => ({ slug: project.slug }));
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const project = projects.find((p) => p.id === slug);
+  const project = await getProjectBySlug(slug);
   if (!project) return { title: 'Project Not Found' };
 
   return {
@@ -34,14 +44,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 /* ── Page component ── */
 export default async function ProjectPage({ params }: PageProps) {
   const { slug } = await params;
-  const projectIndex = projects.findIndex((p) => p.id === slug);
-  if (projectIndex === -1) notFound();
+  const project = await getProjectBySlug(slug);
+  const settings = await getSiteSettings();
+  if (!project || !settings) notFound();
 
-  const project = projects[projectIndex];
-  if (!project) notFound();
-
+  const projects = await getPublishedProjects();
   const otherProjects = projects.filter((p) => p.id !== project.id);
-  const Glyph = iconGlyphs[project.icon];
+  const Glyph = iconGlyphs[project.icon as keyof typeof iconGlyphs] || iconGlyphs['orbit'];
 
   const hasCover = project.cover !== '';
   const extraGalleryImages = project.gallery.filter((img) => img !== project.cover);
@@ -52,7 +61,7 @@ export default async function ProjectPage({ params }: PageProps) {
     <>
       <BackgroundGlow />
 
-      <Navbar />
+      <Navbar brandName={settings.brand_name} />
 
       <main id="main" className="pt-36 pb-28 md:pb-36">
         <div className="max-w-(--max-width-page) mx-auto px-6 md:px-13">
@@ -123,27 +132,15 @@ export default async function ProjectPage({ params }: PageProps) {
             </Reveal>
           )}
 
-          {/* ── Full-Width Stacked Gallery Showcase (Uncropped, original dimensions, sharp edges) ── */}
-          {galleryImages.length > 0 && (
-            <Reveal delay={0} className="mb-24 md:mb-32">
-              <div className="flex flex-col gap-10 md:gap-16">
-                {galleryImages.map((img, i) => (
-                  <div
-                    key={i}
-                    className="w-full border border-white/10 bg-white/[0.02]"
-                  >
-                    <Image
-                      src={img}
-                      alt={`${project.title} — image ${i + 1} of ${galleryImages.length}`}
-                      width={1920}
-                      height={1080}
-                      className="w-full h-auto block"
-                    />
-                  </div>
-                ))}
-              </div>
-            </Reveal>
-          )}
+          {/* ── Block-Based Media Gallery Showcase ── */}
+          <Reveal delay={0} className="mb-24 md:mb-32">
+            <ProjectMediaBlocks
+              blocks={project.mediaBlocks}
+              fallbackGallery={galleryImages}
+              projectTitle={project.title}
+              coverImage={project.cover}
+            />
+          </Reveal>
 
           {/* ── More Projects Horizontal Scroll Showcase ── */}
           <div className="border-t border-white/10 pt-20">
@@ -198,7 +195,7 @@ export default async function ProjectPage({ params }: PageProps) {
         </div>
       </main>
 
-      <Footer />
+      <Footer brandName={settings.brand_name} socialLinks={settings.social_links} />
     </>
   );
 }

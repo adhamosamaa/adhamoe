@@ -6,7 +6,8 @@ import { SectionLabel } from '@/components/ui/SectionLabel';
 import { AccentText } from '@/components/ui/AccentText';
 import { Reveal } from '@/components/ui/Reveal';
 import { WorksGrid } from '@/components/sections/WorksGrid';
-import { projects } from '@/data/projects';
+import { getSiteSettings } from '@/lib/getSiteSettings';
+import { getPublishedProjects } from '@/data/projects';
 
 export const metadata: Metadata = {
   title: 'Works - Adham Osama',
@@ -14,12 +15,17 @@ export const metadata: Metadata = {
     'Selected projects in graphic design, social media campaigns, AI art direction, and automation by Adham Osama.',
 };
 
-export default function WorksPage() {
+export const revalidate = 0;
+
+export default async function WorksPage() {
+  const projects = await getPublishedProjects();
+  const settings = await getSiteSettings();
+  if (!settings) return null;
   return (
     <>
       <BackgroundGlow />
 
-      <Navbar />
+      <Navbar brandName={settings.brand_name} />
 
       <main id="main" className="pt-40 pb-24 md:pb-32">
         <div className="max-w-(--max-width-page) mx-auto px-6 md:px-13">
@@ -34,7 +40,7 @@ export default function WorksPage() {
         </div>
       </main>
 
-      <Footer />
+      <Footer brandName={settings.brand_name} socialLinks={settings.social_links} />
     </>
   );
 }

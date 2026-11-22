@@ -2,13 +2,16 @@ import Link from 'next/link';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
 import { BackgroundGlow } from '@/components/ui/BackgroundGlow';
+import { getSiteSettings } from '@/lib/getSiteSettings';
 
-export default function NotFound() {
+export default async function NotFound() {
+  const settings = await getSiteSettings();
+  if (!settings) return null;
   return (
     <>
       <BackgroundGlow />
 
-      <Navbar />
+      <Navbar brandName={settings.brand_name} />
 
       <main id="main" className="pt-40 pb-32 min-h-[70vh] flex items-center">
         <div className="max-w-(--max-width-page) mx-auto px-6 md:px-13 text-center w-full">
@@ -25,7 +28,7 @@ export default function NotFound() {
         </div>
       </main>
 
-      <Footer />
+      <Footer brandName={settings.brand_name} socialLinks={settings.social_links} />
     </>
   );
 }

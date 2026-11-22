@@ -6,9 +6,9 @@ import { HighlightText } from '@/components/ui/HighlightText';
 import { ArrowRightIcon } from '@/components/ui/ArrowRightIcon';
 import { ProcessStepCard } from '@/components/cards/ProcessStepCard';
 import { processSteps } from '@/data/process';
-import { siteSettings } from '@/data/settings';
+import type { BioParagraph } from '@/types';
 
-export function About() {
+export function About({ settings }: { settings: any }) {
   return (
     <section id="about" className="py-24 md:py-32 border-t border-white/5">
       <div className="max-w-(--max-width-page) mx-auto px-6 md:px-13">
@@ -18,7 +18,7 @@ export function About() {
             <h2 className="text-[clamp(40px,4.5vw,62px)] font-bold tracking-[-0.04em] leading-none mb-12">
               Design with <AccentText>purpose,</AccentText> not decoration.
             </h2>
-            {siteSettings.aboutParagraphs.map((paragraph) => (
+            {settings.about_paragraphs.map((paragraph: BioParagraph) => (
               <HighlightText
                 key={paragraph.id}
                 paragraph={paragraph}

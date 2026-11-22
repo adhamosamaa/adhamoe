@@ -6,10 +6,10 @@ import { SectionLabel } from '@/components/ui/SectionLabel';
 import { AccentText } from '@/components/ui/AccentText';
 import { Reveal } from '@/components/ui/Reveal';
 import { HiwCard } from '@/components/cards/HiwCard';
-import { howItWorksCards } from '@/data/how-it-works';
+import type { HowItWorksCard } from '@/types';
 import { cn } from '@/utils/cn';
 
-export function HowItWorks() {
+export function HowItWorks({ cards }: { cards: HowItWorksCard[] }) {
   const ref = useRef<HTMLDivElement>(null);
   const shouldReduceMotion = useReducedMotion();
   const inView = useInView(ref, { once: true, amount: 0.15, margin: '0px 0px -60px 0px' });
@@ -30,7 +30,7 @@ export function HowItWorks() {
           <div className="hiw-glow hiw-glow--left" aria-hidden="true"></div>
           <div className="hiw-glow hiw-glow--right" aria-hidden="true"></div>
 
-          {howItWorksCards.map((card) => (
+          {cards.map((card) => (
             <HiwCard key={card.id} card={card} />
           ))}
         </div>

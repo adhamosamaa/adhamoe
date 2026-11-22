@@ -12,10 +12,14 @@ import { AccentText } from '@/components/ui/AccentText';
 import { Reveal } from '@/components/ui/Reveal';
 import { useContactForm } from '@/hooks/useContactForm';
 import { contactFormFields } from '@/data/contact';
-import { siteSettings } from '@/data/settings';
 import { cn } from '@/utils/cn';
 
-export function Contact() {
+export interface ContactProps {
+  headline: string;
+  highlight: string;
+}
+
+export function Contact({ headline, highlight }: ContactProps) {
   const { status, statusMessage, handleSubmit } = useContactForm();
 
   return (
@@ -36,7 +40,7 @@ export function Contact() {
             <div>
               <SectionLabel className="mb-4">Let&apos;s work together</SectionLabel>
               <h2 className="text-[clamp(42px,5vw,72px)] font-bold tracking-[-0.03em] leading-[.95]">
-                {siteSettings.contactHeadline} <AccentText>{siteSettings.contactHighlight}</AccentText>
+                {headline} <AccentText>{highlight}</AccentText>
               </h2>
             </div>
             {/* Availability Badge */}

@@ -25,6 +25,7 @@
  * └───────────────────────────────────────────────┘
  */
 @import 'tailwindcss';
+@config '../../tailwind.config.ts';
 
 @theme {
   --color-bg: #000d0c;

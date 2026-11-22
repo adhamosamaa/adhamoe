@@ -1,9 +1,10 @@
 import type { MetadataRoute } from 'next';
-import { projects } from '@/data/projects';
+import { getPublishedProjects } from '@/data/projects';
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://adhamoe.vercel.app';
-
+  
+  const projects = await getPublishedProjects();
   const projectPages = projects.map((project) => ({
     url: `${baseUrl}/works/${project.id}`,
     lastModified: new Date(),

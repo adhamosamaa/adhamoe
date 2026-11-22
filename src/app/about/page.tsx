@@ -12,8 +12,13 @@ export const metadata: Metadata = {
     'Learn more about Adham Osama - graphic designer and AI art director based in Egypt, specializing in social media design, brand identity, and AI-assisted workflows.',
 };
 
+import { getSiteSettings } from '@/lib/getSiteSettings';
 
-export default function AboutPage() {
+export const revalidate = 0;
+
+export default async function AboutPage() {
+  const settings = await getSiteSettings();
+  if (!settings) return null;
   const title = "About — Adham Osama";
   const description = "Background, skills, and approach to design and AI art direction.";
 
@@ -26,9 +31,9 @@ export default function AboutPage() {
       <JsonLd data={schema} />
       <BackgroundGlow />
 
-      <Navbar />
-      <AboutPageContent />
-      <Footer />
+      <Navbar brandName={settings.brand_name} />
+      <AboutPageContent settings={settings} />
+      <Footer brandName={settings.brand_name} socialLinks={settings.social_links} />
     </>
   );
 }

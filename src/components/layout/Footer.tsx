@@ -4,10 +4,9 @@ import Link from 'next/link';
 import { ArrowUp, ArrowUpRight } from 'lucide-react';
 import { SparkIcon } from '@/components/ui/SparkIcon';
 import { SocialIcon } from '@/components/ui/SocialIcon';
-import { siteSettings } from '@/data/settings';
-import { socialLinks } from '@/data/social';
+import type { SocialLink } from '@/types';
 
-export function Footer() {
+export function Footer({ brandName, socialLinks }: { brandName: string, socialLinks: SocialLink[] }) {
   const year = new Date().getFullYear();
 
   const scrollToTop = () => {
@@ -51,7 +50,7 @@ export function Footer() {
             href="/"
             className="flex items-center gap-1.5 text-base font-bold tracking-tight no-underline text-white hover:text-accent transition-colors"
           >
-            {siteSettings.brandName}
+            {brandName}
             <SparkIcon className="w-3.5 h-3.5" fill="var(--color-accent)" />
           </Link>
 

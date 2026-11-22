@@ -7,14 +7,23 @@ import { SectionLabel } from '@/components/ui/SectionLabel';
 import { Reveal } from '@/components/ui/Reveal';
 import { HighlightText } from '@/components/ui/HighlightText';
 import { Contact } from '@/components/sections/Contact';
-import { aboutHeroParagraphs, experience, softwareList } from '@/data/about';
 import { skills } from '@/data/skills';
 import { processSteps } from '@/data/process';
-import { siteSettings } from '@/data/settings';
+import type { BioParagraph, ExperienceEntry, SoftwareItem } from '@/types';
+import { Plus, Trash2 } from 'lucide-react';
+import { cn } from '@/utils/cn';
 
-export function AboutPageContent() {
+interface AboutPageContentProps {
+  settings: any;
+  isEditorMode?: boolean;
+  onChange?: (key: string, value: any) => void;
+}
+
+export function AboutPageContent({ settings, isEditorMode, onChange }: AboutPageContentProps) {
+  const softwareList: SoftwareItem[] = settings.software_list;
   const designSoftware = softwareList.filter((item) => item.category === 'Design');
   const aiTools = softwareList.filter((item) => item.category === 'AI Tools');
+  const experience: ExperienceEntry[] = settings.experience;
 
   return (
     <main id="main" className="pt-36 md:pt-44 pb-0 relative">
@@ -41,7 +50,7 @@ export function AboutPageContent() {
               </Reveal>
 
               <div className="space-y-6 mb-12">
-                {aboutHeroParagraphs.map((paragraph, index) => (
+                {settings.about_extended_paragraphs.map((paragraph: BioParagraph, index: number) => (
                   <Reveal key={paragraph.id} delay={180 + index * 60} direction="up">
                     <HighlightText
                       paragraph={paragraph}
@@ -76,7 +85,7 @@ export function AboutPageContent() {
                     <ArrowUpRight className="w-4 h-4" />
                   </a>
                   <a
-                    href={siteSettings.cv}
+                    href={settings.cv_url}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn-outline text-xs py-3 px-6"
@@ -161,13 +170,34 @@ export function AboutPageContent() {
             {experience.map((entry, index) => {
               const tags = entry.tags ?? [];
 
+              const updateEntry = (field: keyof ExperienceEntry, value: string) => {
+                if (!onChange) return;
+                const newExp = [...experience];
+                (newExp[index] as any)[field] = value;
+                onChange('experience', newExp);
+              };
+
+              const deleteEntry = () => {
+                if (!onChange) return;
+                onChange('experience', experience.filter((_, i) => i !== index));
+              };
+
               return (
-                <Reveal key={entry.id} delay={index * 80} direction="up">
+                <Reveal key={entry.id} delay={isEditorMode ? 0 : index * 80} direction="up">
                   <motion.div
-                    whileHover={{ x: 4 }}
+                    whileHover={{ x: isEditorMode ? 0 : 4 }}
                     transition={{ duration: 0.25 }}
-                    className="py-10 group transition-colors hover:bg-white/[0.015] px-4 md:px-6 rounded-2xl"
+                    className="py-10 group transition-colors hover:bg-white/[0.015] px-4 md:px-6 rounded-2xl relative"
                   >
+                    {isEditorMode && (
+                      <button 
+                        onClick={deleteEntry}
+                        className="absolute right-4 top-4 p-2 bg-red-500/10 text-red-400 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity hover:bg-red-500/20 z-10"
+                        title="Delete Experience"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </button>
+                    )}
                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
                       {/* Index Number & Period */}
                       <div className="lg:col-span-3 flex items-center justify-between lg:block">
@@ -181,10 +211,20 @@ export function AboutPageContent() {
 
                       {/* Role & Company */}
                       <div className="lg:col-span-4">
-                        <h3 className="text-xl md:text-2xl font-bold text-white tracking-tight group-hover:text-accent transition-colors mb-1">
+                        <h3 
+                          contentEditable={isEditorMode}
+                          suppressContentEditableWarning
+                          onBlur={(e) => updateEntry('role', e.currentTarget.textContent || '')}
+                          className={cn("text-xl md:text-2xl font-bold text-white tracking-tight mb-1", isEditorMode ? "outline-none focus:ring-2 focus:ring-accent/50 rounded px-1 -ml-1 transition-all" : "group-hover:text-accent transition-colors")}
+                        >
                           {entry.role}
                         </h3>
-                        <p className="text-xs font-mono text-gray-dim uppercase tracking-widest">
+                        <p 
+                          contentEditable={isEditorMode}
+                          suppressContentEditableWarning
+                          onBlur={(e) => updateEntry('company', e.currentTarget.textContent || '')}
+                          className={cn("text-xs font-mono text-gray-dim uppercase tracking-widest", isEditorMode && "outline-none focus:ring-2 focus:ring-accent/50 rounded px-1 -ml-1 transition-all")}
+                        >
                           {entry.company}
                         </p>
                       </div>
@@ -212,6 +252,23 @@ export function AboutPageContent() {
               );
             })}
           </div>
+
+          {isEditorMode && (
+            <button
+              onClick={() => {
+                if (onChange) {
+                  onChange('experience', [
+                    ...experience,
+                    { id: Date.now().toString(), role: 'New Role', company: 'Company', period: '2024 - Present', description: 'Description...', tags: [] }
+                  ]);
+                }
+              }}
+              className="w-full py-6 mt-6 border-2 border-dashed border-white/10 rounded-2xl flex items-center justify-center gap-2 text-gray-dim hover:text-white hover:border-white/30 hover:bg-white/[0.02] transition-all cursor-pointer"
+            >
+              <Plus className="w-5 h-5" />
+              <span>Add Experience</span>
+            </button>
+          )}
         </div>
       </section>
 
@@ -358,7 +415,7 @@ export function AboutPageContent() {
       </section>
 
       {/* ── Contact ───────────────────────────────────────────── */}
-      <Contact />
+      <Contact headline={settings.contact_headline} highlight={settings.contact_highlight} />
     </main>
   );
 }
